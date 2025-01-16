@@ -9,12 +9,10 @@ use App\Models\Event;
 class NomorDua {
 
 	public function submit(Request $request) {
-		// Validate user is authenticated
 		if (!Auth::check()) {
 			return redirect()->route('event.home')->with('error', 'Please login first');
 		}
 		
-		// Create new event
 		Event::create([
 			'name' => $request->name,
 			'start' => $request->start,
