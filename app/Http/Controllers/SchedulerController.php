@@ -6,15 +6,13 @@ use Illuminate\Http\Request;
 use App\Jawaban\NomorDua;
 use App\Jawaban\NomorTiga;
 use App\Jawaban\NomorEmpat;
+use Illuminate\Support\Facades\Auth;
 
 class SchedulerController extends Controller {
 
-    public function home () {
-
+    public function home() {
         $nomorTiga = new NomorTiga(); 
-        $events = $nomorTiga->getData();
-
-        return view('home.index', compact('events'));
+        return $nomorTiga->getData();  
     }
 
     public function submit (Request $request) {

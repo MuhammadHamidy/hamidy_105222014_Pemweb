@@ -9,10 +9,17 @@ use App\Models\Event;
 class NomorEmpat {
 
 	public function getJson () {
-
-		// Tuliskan code untuk mengambil semua jadwal, simpan di variabel $data
-		$data = [];
-
+		$data = Event::with('user')
+					 ->get()
+					 ->map(function($event) {
+						 return [
+							 'id' => $event->id,
+							 'title' => $event->name . ' (' . $event->user->name . ')',
+							 'start' => $event->start,
+							 'end' => $event->end,
+							 'color' => $event->user_id === Auth::id() ? '#2196F3' : '#9E9E9E'
+						 ];
+					 });
 		return response()->json($data);
 	}
 }

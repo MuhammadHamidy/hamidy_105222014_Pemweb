@@ -16,8 +16,8 @@ use App\Http\Controllers\SchedulerController;
 |
 */
 
-Route::post('auth', [AuthController::class, 'auth'])->name('auth');
-Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/login', [AuthController::class, 'auth'])->name('auth');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::prefix('event')->name('event.')->group(function(){
     Route::get('/', [SchedulerController::class, 'home'])->name('home');

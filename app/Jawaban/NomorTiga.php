@@ -9,27 +9,44 @@ use App\Models\Event;
 class NomorTiga {
 
 	public function getData () {
-		// Tuliskan code mengambil semua data jadwal user, simpan di variabel $data 
-		$data = [];
-		return $data;
+		$events = [];
+		if (Auth::check()) {
+			$events = Event::where('user_id', Auth::id())->get();
+		}
+		
+		return view('home.index', ['events' => $events]);
 	}
 
 	public function getSelectedData (Request $request) {
-
-		// Tuliskan code mengambil 1 data jadwal user dengan id jadwal, simpan di variabel $data 
-		$data = [];
-		return response()->json($data);
+		try {
+			$data = Event::where('user_id', Auth::id())
+						->where('id', $request->id)
+						->firstOrFail();
+			return response()->json($data);
+		} catch (\Exception $e) {
+			return response()->json(['error' => 'Data tidak ditemukan'], 404);
+		}
 	}
 
 	public function update (Request $request) {
-
-		// Tuliskan code mengupdate 1 jadwal
+		$event = Event::where('user_id', Auth::id())
+					  ->where('id', $request->id)
+					  ->firstOrFail();
+					  
+		$event->update([
+			'name' => $request->name,
+			'start' => $request->start,
+			'end' => $request->end
+		]);
+		
 		return redirect()->route('event.home');
 	}
 
 	public function delete (Request $request) {
-
-		// Tuliskan code menghapus 1 jadwal
+		Event::where('user_id', Auth::id())
+			 ->where('id', $request->id)
+			 ->delete();
+			 
 		return redirect()->route('event.home');
 	}
 }
