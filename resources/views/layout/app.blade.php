@@ -23,7 +23,7 @@
         <script src="{{ asset('argon/vendor/js-cookie/js.cookie.js') }}"></script>
         <script src="{{ asset('argon/vendor/jquery.scrollbar/jquery.scrollbar.min.js') }}"></script>
         <script src="{{ asset('argon/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js') }}"></script>
-        
+       
         <!-- Additional Scripts -->
         <script src="{{ asset('fullcalendar/dist/index.global.min.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/html-duration-picker@latest/dist/html-duration-picker.min.js"></script>
@@ -141,7 +141,7 @@
         <script src="{{ asset('argon/vendor/sweetalert2/dist/sweetalert2.min.js') }}"></script>
         <script src="{{ asset('argon/vendor/datatables.net/js/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('argon/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-        
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         @yield('addon-script')
         
     </body>

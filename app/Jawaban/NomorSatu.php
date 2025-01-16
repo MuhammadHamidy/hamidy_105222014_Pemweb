@@ -20,17 +20,17 @@ class NomorSatu {
         
         if ($user && Hash::check($request->password, $user->password)) {
             Auth::login($user);
-            return redirect()->route('event.home');
+            return redirect()->route('event.home')->with('success', 'Login berhasil');
         }
         
-        return redirect()->back();
+        return redirect()->back()->with('error', 'Login gagal');
     }
         
     public function logout(Request $request) {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('event.home');
+        return redirect()->route('event.home')->with('success', 'Logout berhasil');
     }
 }
 ?>

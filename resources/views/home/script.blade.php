@@ -17,4 +17,23 @@
       calendar.render();
   });
 
+	@if (session('success'))
+		Swal.fire({
+			icon: 'success',
+			title: 'Sukses!',
+			text: '{{ session('success') }}',
+			showConfirmButton: false,
+			timer: 3000 
+		});
+	@endif
+
+	@if ($errors->any())
+		Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: '{{ $errors->first() }}',
+			showConfirmButton: false,
+			timer: 3000 
+		});
+	@endif
 </script>

@@ -39,7 +39,7 @@ class NomorTiga {
 			'end' => $request->end
 		]);
 		
-		return redirect()->route('event.home');
+		return redirect()->route('event.home')->with('success', 'Event updated successfully');
 	}
 
 	public function delete (Request $request) {
@@ -47,7 +47,7 @@ class NomorTiga {
 			 ->where('id', $request->id)
 			 ->delete();
 			 
-		return redirect()->route('event.home');
+		return redirect()->route('event.home')->with('success', 'Event deleted successfully');
 	}
 }
 
